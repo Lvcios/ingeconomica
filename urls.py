@@ -24,7 +24,6 @@ urlpatterns = patterns('',
     url(r'^P02/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/$',ingeconomica.views.plan02),
     url(r'^P03/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/$',ingeconomica.views.plan03),
     url(r'^P04/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/$',ingeconomica.views.plan04),
-    #url(r'^alan-reyes/(\d+)/$',ingeconomica.views.alan),
     #url(r'^simple.png/', 'ingeconomica.views.simple'),
     (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root':settings.MEDIA_ROOT}),
 

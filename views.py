@@ -268,12 +268,6 @@ def plan04(request,ingreso,isr,ibanco,inversion,financiamiento,vsalvamento,n):
 	return render_to_response('tabs.html',locals())
 
 
-def alan(request):
-	tab = 'Alan Reyes Alvares'
-	array_ani=[65] * 8
-	return render_to_response('tabs.html',locals())
-
-
 def simple(request):
 	import random
 	import django
