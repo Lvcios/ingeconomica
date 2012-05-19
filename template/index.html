@@ -1,0 +1,37 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8"> 
+<title>Ingeniería Económica</title> 
+<meta name="description" content="Sistema de planes...xD">
+<!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css"/> -->
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/bootstrap.css{% endblock %}" />
+</head>
+<body>
+<p> {{MEDIA_URL}}</p>
+<div class="container">
+<ul class="nav nav-tabs">
+<li class="{{ active_a }}"><a href="http://localhost/ingeconomica/inicio">Inicio</a> </li> 
+<li class="{{ active_b }}"><a href="http://localhost/ingeconomica/P01/7000/34/15/13000/12000/5000/5">Plan 1</a></li> 
+<li class="{{ active_c }}"><a href="http://localhost/ingeconomica/P02/7000/34/15/13000/12000/5000/5">Plan 2</a></li> 
+<li class="{{ active_d }}"><a href="http://localhost/ingeconomica/P03/7000/34/15/13000/12000/5000/5">Plan 3</a></li> 
+<li class="{{ active_e }}"><a href="http://localhost/ingeconomica/P04/7000/34/15/13000/12000/5000/5">Plan 4</a></li> 
+</ul>
+</div>
+</div>
+<div align="center">
+	{{ tab }}
+</div>
+<div>
+	<p>Esta aplicación muestra los cuatro tipos de planes para pagar un producto.</p>
+	<p>Para ver cómo fuciona cada plan usted debera ingresar los datos de interes, inversión, financiamiento, etc con el siguiente formato en la URL del explorador</p>
+	
+	<p>Recuerde que el formato para la url es el siguiente:</p>
+	<p>localhost/ingeconomica/P01/Ingreso/ISR/Interes Banco/Inversion/Financiamiento/Valor de salvamento/Años</p>
+	<p>Por ejemplo:</p>
+	<p>http://localhost/ingeconomica/P01/7000//34/15/13000/12000/5000/5/</p>
+	
+</div>
+</body>
+</html>
+

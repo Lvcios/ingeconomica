@@ -1,0 +1,27 @@
+
+<Location "/ingeconomica/">
+#<Location "/planes/">
+		SetHandler python-program
+		PythonHandler django.core.handlers.modpython
+		SetEnv DJANGO_SETTINGS_MODULE ingeconomica.settings
+		PythonOption django.root /ingeconomica
+		PythonDebug On
+		PythonPath "['/var/www/html/'] + sys.path"
+ 	</Location>
+
+#Alias /media/ /usr/lib/python2.7/site-packages/django/contrib/admin/media/
+Alias /media/ /var/www/html/ingeconomica/static/
+<Directory /var/www/html/ingeconomica/static>
+#<Directory /usr/lib/python2.7/site-packages/django/contrib/admin/media/>
+	Order Allow,deny
+	Allow from all
+</Directory>
+
+Alias /static/ /var/www/html/ingeconomica/static/
+
+<Directory /var/www/html/ingeconomica/static>
+	Order allow,deny
+	Allow from all
+</Directory>
+
+chdmod -R 777 a la carpeta de los staticos

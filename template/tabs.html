@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="utf-8"> 
+<title>Ingeniería Económica</title> 
+<meta name="description" content="Sistema de planes...xD">
+<!-- <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap.css"/> -->
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/bootstrap.css{% endblock %}" />
+</head>
+<body>
+<p> {{MEDIA_URL}}</p>
+<div class="container">
+<ul class="nav nav-tabs">
+<li class="{{ active_a }}"><a href="http://localhost/ingeconomica/inicio">Inicio</a> </li> 
+<li class="{{ active_b }}"><a href="http://localhost/ingeconomica/P01/{{ ingreso }}/{{ isr }}/{{ ibanco }}/{{ inversion }}/{{ financiamiento }}/{{ vsalvamento }}/{{ n }}">Plan 1</a></li> 
+<li class="{{ active_c }}"><a href="http://localhost/ingeconomica/P02/{{ ingreso }}/{{ isr }}/{{ ibanco }}/{{ inversion }}/{{ financiamiento }}/{{ vsalvamento }}/{{ n }}">Plan 2</a></li> 
+<li class="{{ active_d }}"><a href="http://localhost/ingeconomica/P03/{{ ingreso }}/{{ isr }}/{{ ibanco }}/{{ inversion }}/{{ financiamiento }}/{{ vsalvamento }}/{{ n }}">Plan 3</a></li> 
+<li class="{{ active_e }}"><a href="http://localhost/ingeconomica/P04/{{ ingreso }}/{{ isr }}/{{ ibanco }}/{{ inversion }}/{{ financiamiento }}/{{ vsalvamento }}/{{ n }}">Plan 4</a></li> 
+</ul>
+</div>
+</div>
+<div align="center">
+	{{ tab }}
+	
+	<p>Recuerde que el formato para la url es el siguiente:</p>
+	<p>localhost/ingeconomica/P01/Ingreso/ISR/Interes Banco/Inversion/Financiamiento/Valor de salvamento/Años</p>
+	<p>Por ejemplo:</p>
+	<p>http://localhost/ingeconomica/P01/7000/34/15/13000/12000/5000/5/</p>
+	<table class="table table-stripe" align="center">
+		<thead>
+			<tr align="center">
+				<th> Periodo</th>
+				{% for item in array_ani %}
+				<th> Año {{ item  }} </th>
+				{% endfor%}
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>Ingresos</th>
+				{% for item in array_in %}
+				<td>{{ item }}</td>
+				{% endfor%}
+			</tr>
+			<tr>
+				<th>Costo</th>
+				{% for item in array_co %}
+				<td>{{ item }}</td>
+				{% endfor%}
+			</tr>
+			<tr>
+				<th>Depreciación</th>
+				{% for item in array_de %}
+				<td>{{ item }}</td>
+				{% endfor%}
+			</tr>
+			<tr>
+				<th>Costo de capital</th>
+				{% for item in array_cc %}
+				<td>{{ item }}</td>
+				{% endfor%}
+			</tr>
+			<tr>
+				<th>U.A.I</th>
+				{% for item in array_uai %}
+				<td>{{ item }}</td>
+				{% endfor%}
+			</tr>
+			<tr>
+				<th>I.S.R.</th>
+				{% for item in array_isr %}
+				<td>{{ item }}</td>
+				{% endfor%}
+			</tr>
+			<tr>
+				<th>U.D.I.</th>
+				{% for item in array_udi %}
+				<td>{{ item }}</td>
+				{% endfor%}
+			</tr>
+			<tr>
+				<th>Depreciación</th>
+				{% for item in array_de %}
+				<td>{{ item }}</td>
+				{% endfor%}
+			</tr>
+			<tr>
+				<th>Pago a Principal</th>
+				{% for item in array_pp %}
+				<td>{{ item }}</td>
+				{% endfor%}
+			</tr>
+			<tr>
+				<th>F.N.E.</th>
+				{% for item in array_fnc %}
+				<td>{{ item }}</td>
+				{% endfor%}
+			</tr>
+		</tbody>
+	</table>
+</div>
+</body>
+</html>
+
