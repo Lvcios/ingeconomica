@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     #url(r'^admin/', include(admin.site.urls)),
     url(r'^inicio/',ingeconomica.views.incio),
+    url(r'^contact/',ingeconomica.views.ContactForm),
     #formato de url
     #/ingreso/depreciacion/ibanco/inversion/financiamiento/n/
     url(r'^P01/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/(\d+)/$',ingeconomica.views.plan01),

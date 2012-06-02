@@ -1,7 +1,31 @@
 #_*_ coding:utf-8 _*_
 
 from django.shortcuts import render_to_response
+from django.core.context_processors import csrf
 import datetime
+from django import forms
+
+class ContactForm(forms.Form):
+	subject = forms.CharField(max_length=100)
+	message = forms.CharField()
+	sender = forms.EmailField()
+	cc_myself = forms.BooleanField(required=False)
+
+def contact(request):
+	if request.method == 'POST': # If the form has been submitted...
+		form = ContactForm(request.POST) # A form bound to the POST data
+		if form.is_valid():
+			subject = form.cleaned_data['subject']
+			message = form.cleaned_data['message']
+			sender = form.cleaned_data['sender']
+			cc_myself = form.cleaned_data['cc_myself']
+			recipients = ['info@example.com']
+			return HttpResponseRedirect('/thanks/')
+	else:
+		form = ContactForm() # An unbound form
+	return render_to_response('form.html', {'form': form,})
+
+
 
 def incio(request):
 	tab = 'Incio'
@@ -28,7 +52,6 @@ def plan01(request,ingreso,isr,ibanco,inversion,financiamiento,vsalvamento,n):
 	costo_equipo = inversion + financiamiento
 	pago_anual = financiamiento * round(((ibanco)*((1+ibanco)**(n-1))) / (((1+ibanco)**(n-1)) - 1),4) #calculo factor P(A/Pin)
 	dep = ((costo_equipo -  vsalvamento)/(n-1))
-	#dep = costo_equipo - vsalvamento
 	
 	array_in = [ingreso]*n
 	array_in[0] = 0
@@ -53,17 +76,17 @@ def plan01(request,ingreso,isr,ibanco,inversion,financiamiento,vsalvamento,n):
 		array_uai[i] = ingreso - dep - array_cc[i]
 	
 	for i in range(1,n):
-		array_isr[i] = array_uai[i]*0.3
+		array_isr[i] = array_uai[i]*isr
 	
 	for i in range(1,n):
 		array_udi[i] = array_uai[i] - array_isr[i]
 
 	for i in range(1,n):
 		array_fnc[i] = array_udi[i] + dep - array_pp[i]  
-		
+	
 	for i in range(n):
 		array_ani[i] = i
-	
+
 	array_fnc[n - 1] = array_fnc[n - 1] + vsalvamento
 	tab = 'PLAN 1'
 	active_b = 'active'
@@ -71,7 +94,6 @@ def plan01(request,ingreso,isr,ibanco,inversion,financiamiento,vsalvamento,n):
 	ibanco = int(ibanco*100)
 	n = n -1
 	return render_to_response('tabs.html',locals())
-
 
 def plan02(request,ingreso,isr,ibanco,inversion,financiamiento,vsalvamento,n):
 	n = int(n) +1 
@@ -122,7 +144,7 @@ def plan02(request,ingreso,isr,ibanco,inversion,financiamiento,vsalvamento,n):
 		array_uai[i] = ingreso - dep - array_cc[i]
 	
 	for i in range(1,n):
-		array_isr[i] = array_uai[i]*0.3
+		array_isr[i] = array_uai[i]*isr
 	
 	for i in range(1,n):
 		array_udi[i] = array_uai[i] - array_isr[i]
@@ -185,7 +207,7 @@ def plan03(request,ingreso,isr,ibanco,inversion,financiamiento,vsalvamento,n):
 		array_uai[i] = ingreso - dep - array_cc[i]
 	
 	for i in range(1,n):
-		array_isr[i] = array_uai[i]*0.3
+		array_isr[i] = array_uai[i]*isr
 	
 	for i in range(1,n):
 		array_udi[i] = array_uai[i] - array_isr[i]
@@ -248,7 +270,7 @@ def plan04(request,ingreso,isr,ibanco,inversion,financiamiento,vsalvamento,n):
 		array_uai[i] = ingreso - dep - array_cc[i]
 	
 	for i in range(1,n):
-		array_isr[i] = array_uai[i]*0.3
+		array_isr[i] = array_uai[i]*isr
 	
 	for i in range(1,n):
 		array_udi[i] = array_uai[i] - array_isr[i]
